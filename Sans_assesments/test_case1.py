@@ -6,11 +6,12 @@ options =Options()
 options.add_experimental_option("detach", True)
 
 #SetUP Driver
-
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
 # Go to Web  page
 driver.get("https://www.sans.org/")
 driver.maximize_window()
+
 # Find Train and Certify  and click
 driver.find_element("xpath", "//li[@aria-label='Train and Certify']").click()
 
@@ -18,7 +19,11 @@ driver.find_element("xpath", "//li[@aria-label='Train and Certify']").click()
 driver.find_element("xpath", "//a[@aria-label='Full Course List']").click()
 
 # verify Cybersecurity Courses & Certifications list displayed
-driver.find_element("xpath", "//h1[normalize-space()='Cybersecurity Courses & Certifications']").is_displayed()
+CyberCourse= driver.find_element("xpath", "//h1[normalize-space()='Cybersecurity Courses & Certifications']")
+if CyberCourse.is_displayed():
+  print("CyberCourse found")
+else:
+  print("CyberCourse not found")
 
 # close webdriver
 driver.quit()
